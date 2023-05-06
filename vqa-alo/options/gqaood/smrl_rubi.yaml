@@ -6,7 +6,7 @@ dataset:
   name: gqa # or vqa2vg
   dir: data/gqa/gqaood
   train_split: train
-  eval_split: val_all # or test
+  eval_split: val_all # or testdev_all
   proc_split: train # or trainval (preprocessing split, must be equal to train_split)
   nb_threads: 4
   batch_size: 256
@@ -52,7 +52,7 @@ model:
         dimensions: [1024,1024,1835]
   criterion:
     import: cfvqa.models.criterions.factory
-    name: rubi_criterion # ordinary_rubi_criterion #rubi_criterion
+    name: rubi_criterion_batch #rubi_criterion
     question_loss_weight: 1.0
     loose_batch_num: 1
   metric:

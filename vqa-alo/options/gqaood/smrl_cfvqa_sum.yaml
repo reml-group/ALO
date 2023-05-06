@@ -6,7 +6,7 @@ dataset:
   name: gqa # or gqa
   dir: data/gqa/gqaood
   train_split: train
-  eval_split: val_all # or test
+  eval_split: val_all # or testdev_all
   proc_split: train # or trainval (preprocessing split, must be equal to train_split)
   nb_threads: 4
   batch_size: 256
@@ -56,7 +56,7 @@ model:
         dimensions: [1024,1024,1835]
   criterion:
     import: cfvqa.models.criterions.factory
-    name: ord_cfvqa_criterion #cfvqa_criterion #ord_cfvqa_criterion #
+    name: cfvqa_criterion_batch #cfvqa_criterion
     question_loss_weight: 1.0
     vision_loss_weight: 1.0
     loose_batch_num: 1

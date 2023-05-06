@@ -6,7 +6,7 @@ dataset:
   name: gqa # or gqa
   dir: data/gqa/gqaood
   train_split: train
-  eval_split: val_all # or test
+  eval_split: val_all # or testdev_all
   proc_split: train # or trainval (preprocessing split, must be equal to train_split)
   nb_threads: 4
   batch_size: 256

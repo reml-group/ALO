@@ -55,7 +55,7 @@ model:
         dimensions: [1024,1024,3000]
   criterion:
     import: cfvqa.models.criterions.factory
-    name: cfvqa_criterion # cfvqa_criterion # ord_cfvqa_criterion
+    name: cfvqa_criterion_batch # cfvqa_criterion
     question_loss_weight: 1.0
     vision_loss_weight: 1.0
     loose_batch_num: 1
