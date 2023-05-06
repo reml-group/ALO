@@ -57,7 +57,7 @@ model:
     import: cfvqa.models.criterions.factory
     name: cfvqasimple_criterion_batch
     question_loss_weight: 1.0
-    loose_batch_num: 5
+    loose_batch_num: 1
   metric:
     import: cfvqa.models.metrics.factory
     name: vqa_cfvqasimple_metrics

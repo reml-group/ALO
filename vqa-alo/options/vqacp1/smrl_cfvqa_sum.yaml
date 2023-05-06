@@ -58,8 +58,7 @@ model:
     name: cfvqa_criterion # cfvqa_criterion # ord_cfvqa_criterion
     question_loss_weight: 1.0
     vision_loss_weight: 1.0
-    gamma: 1
-    loose_batch_num: 5
+    loose_batch_num: 1
   metric:
     import: cfvqa.models.metrics.factory
     name: vqa_cfvqa_metrics

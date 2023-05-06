@@ -7,17 +7,9 @@ from bootstrap.lib.options import Options
 class RUBiCriterionBatch(nn.Module):
 
     def __init__(self, question_loss_weight=1.0, loose_batch_num = '1'):
-        # super().__init__()
-
-        # Logger()(f'RUBiCriterion, with question_loss_weight = ({question_loss_weight})')
-
-        # self.question_loss_weight = question_loss_weight
-        # self.fusion_loss = nn.CrossEntropyLoss()
-        # self.question_loss = nn.CrossEntropyLoss()
         super().__init__()
 
         Logger()(f'RUBiCriterion, with question_loss_weight = ({question_loss_weight})')
-        #Logger()(f'RUBiCriterion, with question_loss_weight = ({question_loss_weight}) and gamma = {self.gamma}')
 
         self.question_loss_weight = question_loss_weight
         self.fusion_loss = nn.CrossEntropyLoss()
@@ -26,47 +18,8 @@ class RUBiCriterionBatch(nn.Module):
         self.loss_tmp_list = []
         self.sum_list = [0, 0]
         self.gamma = 0.999
-        # Logger()(f'RUBiCriterion, with gamma_list = {self.gamma_list}')
      
     def forward(self, net_out, batch):
-        # ============================
-        # out = {}
-        # # logits = net_out['logits']
-        # logits_q = net_out['logits_q']
-        # logits_rubi = net_out['logits_all']
-        # class_id = batch['class_id'].squeeze(1)
-        # fusion_loss = self.fusion_loss(logits_rubi, class_id)
-        # question_loss = self.question_loss(logits_q, class_id)
-        # loss = fusion_loss + self.question_loss_weight * question_loss
-
-        # out['loss'] = loss
-        # out['loss_mm_q'] = fusion_loss
-        # out['loss_q'] = question_loss
-        # return out
-        # =====================================================
-        # out = {}
-        # # logits = net_out['logits']
-        # logits_q = net_out['logits_q']
-        # logits_rubi = net_out['logits_all']
-        # class_id = batch['class_id'].squeeze(1)
-        # fusion_loss = self.fusion_loss(logits_rubi, class_id)
-        # if self.last_loss < 0:
-        #     gamma = 0.999
-        #     self.last_loss = fusion_loss.detach().item()
-        # else:
-        #     tmp = fusion_loss.detach().item()
-        #     gamma = min(self.last_loss/tmp, 0.999)
-        #     self.last_loss = tmp
-        # question_loss = self.question_loss(logits_q, class_id)
-        # loss = fusion_loss * gamma + self.question_loss_weight * question_loss
-
-        # Logger()(f'RUBiCriterion, with gamma = {gamma}')
-        # out['loss'] = loss
-        # out['loss_mm_q'] = fusion_loss
-        # out['loss_q'] = question_loss
-        # return out
-    
-        # =======================================================
         out = {}
         # logits = net_out['logits']
         logits_q = net_out['logits_q']

@@ -3,8 +3,7 @@ from block.models.metrics.vqa_accuracies import VQAAccuracies
 from .vqa_rubi_metrics import VQARUBiMetrics
 from .vqa_cfvqa_metrics import VQACFVQAMetrics
 from .vqa_cfvqasimple_metrics import VQACFVQASimpleMetrics
-from .vqa_cfvqaintrod_metrics import VQACFVQAIntroDMetrics
-from .vqa_rubiintrod_metrics import VQARUBiIntroDMetrics
+
 
 def factory(engine, mode):
     name = Options()['model.metric.name']
@@ -58,26 +57,6 @@ def factory(engine, mode):
     elif name == "vqa_cfvqasimple_metrics":
         open_ended = ('tdiuc' not in Options()['dataset.name'] and 'gqa' not in Options()['dataset.name'])
         metric = VQACFVQASimpleMetrics(engine,
-            mode=mode,
-            open_ended=open_ended,
-            tdiuc=True,
-            dir_exp=Options()['exp.dir'],
-            dir_vqa=Options()['dataset.dir']
-        )
-
-    elif name == "vqa_cfvqaintrod_metrics":
-        open_ended = ('tdiuc' not in Options()['dataset.name'] and 'gqa' not in Options()['dataset.name'])
-        metric = VQACFVQAIntroDMetrics(engine,
-            mode=mode,
-            open_ended=open_ended,
-            tdiuc=True,
-            dir_exp=Options()['exp.dir'],
-            dir_vqa=Options()['dataset.dir']
-        )
-
-    elif name == "vqa_rubiintrod_metrics":
-        open_ended = ('tdiuc' not in Options()['dataset.name'] and 'gqa' not in Options()['dataset.name'])
-        metric = VQARUBiIntroDMetrics(engine,
             mode=mode,
             open_ended=open_ended,
             tdiuc=True,

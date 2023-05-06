@@ -5,13 +5,8 @@ from fractions import Fraction
 
 class RUBiCriterion(nn.Module):
 
-    def __init__(self, question_loss_weight=1.0, gamma='1'):
+    def __init__(self, question_loss_weight=1.0):
         super().__init__()
-
-        # assert '/' in gamma, "gamma must be written in #/#"
-        self.gamma = float(Fraction(gamma))
-        # assert 0.0 < self.gamma < 1.0
-        
         Logger()(f'RUBiCriterion, with question_loss_weight = ({question_loss_weight}) ')
 
         self.question_loss_weight = question_loss_weight
@@ -24,7 +19,7 @@ class RUBiCriterion(nn.Module):
         logits_q = net_out['logits_q']
         logits_rubi = net_out['logits_all']
         class_id = batch['class_id'].squeeze(1)
-        fusion_loss = self.gamma * self.fusion_loss(logits_rubi, class_id)
+        fusion_loss = self.fusion_loss(logits_rubi, class_id)
         question_loss = self.question_loss_weight * self.question_loss(logits_q, class_id)
         loss = fusion_loss + question_loss
 

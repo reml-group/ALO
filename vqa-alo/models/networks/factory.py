@@ -11,8 +11,7 @@ from bootstrap.lib.logger import Logger
 
 from .rubi import RUBiNet
 from .cfvqa import CFVQA
-from .cfvqaintrod import CFVQAIntroD
-from .rubiintrod import RUBiIntroD
+
 
 def factory(engine):
     mode = list(engine.dataset.keys())[0]
@@ -70,74 +69,6 @@ def factory(engine):
             classif_v=None,
             fusion_mode=opt['fusion_mode'],
             is_va=False
-        )
-
-    elif opt['name'] == 'cfvqaintrod':
-        orig_net_teacher = BaselineNet(
-            txt_enc=opt['txt_enc'],
-            self_q_att=opt['self_q_att'],
-            agg=opt['agg'],
-            classif=opt['classif'],
-            wid_to_word=dataset.wid_to_word,
-            word_to_wid=dataset.word_to_wid,
-            aid_to_ans=dataset.aid_to_ans,
-            ans_to_aid=dataset.ans_to_aid,
-            fusion=opt['fusion'],
-            residual=opt['residual'],
-            q_single=opt['q_single'],
-        )
-        net = CFVQAIntroD(
-            model=orig_net,
-            model_teacher=orig_net_teacher,
-            output_size=len(dataset.aid_to_ans),
-            classif_q=opt['cfvqa_params']['mlp_q'],
-            classif_v=opt['cfvqa_params']['mlp_v'],
-            fusion_mode=opt['fusion_mode']
-        )
-
-    elif opt['name'] == 'cfvqasimpleintrod':
-        orig_net_teacher = BaselineNet(
-            txt_enc=opt['txt_enc'],
-            self_q_att=opt['self_q_att'],
-            agg=opt['agg'],
-            classif=opt['classif'],
-            wid_to_word=dataset.wid_to_word,
-            word_to_wid=dataset.word_to_wid,
-            aid_to_ans=dataset.aid_to_ans,
-            ans_to_aid=dataset.ans_to_aid,
-            fusion=opt['fusion'],
-            residual=opt['residual'],
-            q_single=opt['q_single'],
-        )
-        net = CFVQAIntroD(
-            model=orig_net,
-            model_teacher=orig_net_teacher,
-            output_size=len(dataset.aid_to_ans),
-            classif_q=opt['cfvqa_params']['mlp_q'],
-            classif_v=None,
-            fusion_mode=opt['fusion_mode'],
-            is_va=False
-        )
-
-    elif opt['name'] == 'rubiintrod':
-        orig_net_teacher = BaselineNet(
-            txt_enc=opt['txt_enc'],
-            self_q_att=opt['self_q_att'],
-            agg=opt['agg'],
-            classif=opt['classif'],
-            wid_to_word=dataset.wid_to_word,
-            word_to_wid=dataset.word_to_wid,
-            aid_to_ans=dataset.aid_to_ans,
-            ans_to_aid=dataset.ans_to_aid,
-            fusion=opt['fusion'],
-            residual=opt['residual'],
-            q_single=opt['q_single'],
-        )
-        net = RUBiIntroD(
-            model=orig_net,
-            model_teacher=orig_net_teacher,
-            output_size=len(dataset.aid_to_ans),
-            classif=opt['rubi_params']['mlp_q']
         )
 
     else:

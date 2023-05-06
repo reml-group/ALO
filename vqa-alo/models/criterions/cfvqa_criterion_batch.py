@@ -32,7 +32,7 @@ class CFVQACriterionBatch(nn.Module):
         logits_rubi = net_out['logits_all']
         fusion_loss = self.fusion_loss(logits_rubi, class_id)
 
-        #============batch=============
+        # ============batch=============
         # fusion_loss = self.fusion_loss(logits_rubi, class_id)
         # if self.last_loss < 0:
         #     gamma = 0.999
@@ -41,7 +41,7 @@ class CFVQACriterionBatch(nn.Module):
         #     tmp = fusion_loss.detach().item()
         #     gamma = min(self.last_loss/tmp, 0.999)
         #     self.last_loss = tmp
-        #===============================
+        # ===============================
         self.loss_tmp_list.append(fusion_loss.item())  #!!!
         
         logits_q = net_out['logits_q']
@@ -57,7 +57,7 @@ class CFVQACriterionBatch(nn.Module):
         kl_loss = - p_te*p_nde.log()    
         kl_loss = kl_loss.sum(1).mean() 
 
-        #fusion_loss * gamma
+        # fusion_loss * gamma
         loss = fusion_loss * self.gamma \
                 + self.question_loss_weight * question_loss \
                 + kl_loss

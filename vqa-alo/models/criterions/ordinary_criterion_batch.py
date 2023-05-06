@@ -13,9 +13,7 @@ class OrdinaryCriterionBatch(nn.Module):
         self.loss_tmp_list = []
         self.sum_list = [0, 0]
         self.gamma = 0.999
-    
-        Logger()(f'Ordinary loss (gamma={self.gamma}), batch number = {self.loose_batch_num}')
-
+        Logger()(f'batch number = {self.loose_batch_num}')
 
     def forward(self, net_out, batch):
         #========= original ============
