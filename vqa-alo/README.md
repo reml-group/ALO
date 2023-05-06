@@ -37,7 +37,7 @@ bash  vqa-alo/datasets/scripts/download_gqa.sh
 
 ## Quick start
 ### Train a model
-The [bootstrap/run.py](https://github.com/Cadene/bootstrap.pytorch/blob/master/bootstrap/run.py) file load the options contained in a yaml file, create the corresponding experiment directory and start the training procedure. For instance, you can train our best model on VQA-CP v2 (CFVQA+SUM+SMRL) by running:
+The [bootstrap/run.py](https://github.com/Cadene/bootstrap.pytorch/blob/master/bootstrap/run.py) file load the options contained in a yaml file, create the corresponding experiment directory and start the training procedure. For instance, after changing options in option file ` smrl_cfvqa_sum.yaml `, you can train cfvqa model on VQA-CP v2 by running:
 
 ```bash
 python  -m  bootstrap.run  -o  vqa-alo/options/vqacp2/smrl_cfvqa_sum.yaml
@@ -61,7 +61,7 @@ Many options are available in the options directory. You can change ` exp.dir `,
 ```bash
 python -m bootstrap.run \
 -o options/vqacp2/smrl_baseline.yaml \
---exp.dir logs/vqacp2/updn_baseline_batch5\
+--exp.dir logs/vqacp2/updn_baseline_batch5 \
 --model.network.base updn \
 --model.criterion.name ordinary_criterion_batch \
 --model.criterion.loose_batch_num 5
@@ -86,7 +86,7 @@ There is no test set on VQA-CP v2, so the evaluation is done on the validation s
 ```bash
 python  -m  bootstrap.run  \
 -o  options/vqacp2/smrl_cfvqa_sum.yaml  \
---exp.resume best_eval_epoch.accuracy_top1  \
+--exp.resume best_eval_epoch.accuracy_cfvqa_top1  \
 --exp.dir logs/vqacp2/smrl_cfvqa_sum \
 --dataset.train_split  '' \
 --dataset.eval_split  val  \
@@ -97,7 +97,7 @@ Foe a model trained on GQA-OOD, you should run an extra command to get the final
 
 ```bash
 python eval_gqaood/evaluation.py \
---predictions path/of/result/answer/json/files/ \
+--predictions path/of/result/answer/json/files \
 --ood_test --type test
 ```
 
