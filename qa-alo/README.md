@@ -1,6 +1,7 @@
-# Position Bias in Question Answering
+# ALO-QA
 
-This repository provides code for the paper '[Look at the First Sentence: Position Bias in Question Answering](https://arxiv.org/abs/2004.14602)' (EMNLP, 2020). You can train the question-answering model on synthetic datasets with various de-biasing methods. We currently provide synthetic datasets and position statistics of [SQuAD](https://rajpurkar.github.io/SQuAD-explorer/).
+This code is implemented as a fork of [position-bias](https://github.com/dmis-lab/position-bias).
+
 
 ## Requirements
 
@@ -14,7 +15,7 @@ Note that Pytorch has to be installed depending on the version of CUDA.
 
 ## Dataset
 
-We provide five synthetic datasets.
+Five synthetic datasets are provided.
 
 
 <table >
@@ -54,32 +55,20 @@ We provide five synthetic datasets.
 
 ## Train
 
-The following example train BERT on our synthetic dataset.
+The following example train BERT on the synthetic dataset.
 
 ```
 TRAIN_FILE=dataset/squad/SQuAD-train-1st.json
 OUTPUT_DIR=logs/1st_bert
 make train_bert TRAIN_FILE=${TRAIN_FILE} OUTPUT_DIR=${OUTPUT_DIR}
 ```
-### Train Baselines 
-You can train two de-biasing baselines (entropy regularization, randomized position) with the following examples.
+Set `use_alo True` in the makefile to use our ALO approach.
 
-```
-TRAIN_FILE=dataset/squad/SQuAD-train-1st.json
-OUTPUT_DIR=logs/1st_ent_reg
-make train_entropy_bert TRAIN_FILE=${TRAIN_FILE} OUTPUT_DIR=${OUTPUT_DIR}
-```
-
-```
-TRAIN_FILE=dataset/squad/SQuAD-train-1st.json
-OUTPUT_DIR=logs/1st_random
-make train_random_bert TRAIN_FILE=${TRAIN_FILE} OUTPUT_DIR=${OUTPUT_DIR}
-```
 ### Train Bias Ensemble
 The following examples train bias ensemble methods (bias product, learned-mixin) on each synthetic dataset. To select a synthetic dataset, you can choose K between [1st, 2nd, 3rd, 4th, 5th].
 
 ```
-K = 1st
+K=1st
 TRAIN_FILE=dataset/squad/SQuAD-train-${K}.json
 STAT_FILE=dataset/squad/${K}_stat.p
 OUTPUT_DIR=logs/${K}_prod
@@ -87,7 +76,7 @@ make train_prod_bert TRAIN_FILE=${TRAIN_FILE} STAT_FILE=${STAT_FILE} OUTPUT_DIR=
 ```
 
 ```
-K = 1st
+K=1st
 TRAIN_FILE=dataset/squad/SQuAD-train-${K}.json
 STAT_FILE=dataset/squad/${K}_stat.p
 OUTPUT_DIR=logs/${K}_mixin
@@ -103,13 +92,6 @@ OUTPUT_DIR=logs/full_mixin
 make train_mixin_bert TRAIN_FILE=${TRAIN_FILE} STAT_FILE=${STAT_FILE} OUTPUT_DIR=${OUTPUT_DIR}
 ```
 
-## Citation
+## Acknowledgement
 
-```
-@inproceedings{ko2020look,
-      title={Look at the First Sentence: Position Bias in Question Answering}, 
-      author={Ko, Miyoung and Lee, Jinhyuk and Kim, Hyunjae and Kim, Gangwoo and Kang, Jaewoo},
-      year={2020},
-      booktitle={EMNLP}
-}
-```
+Special thanks to the authors of [position-bias](https://github.com/dmis-lab/position-bias), and the datasets used in this project.
