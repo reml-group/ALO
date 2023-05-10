@@ -1,6 +1,6 @@
 # ALO-QA
 
-This code is implemented as a fork of [position-bias](https://github.com/dmis-lab/position-bias).
+This code is implemented based on a fork of [position-bias](https://github.com/dmis-lab/position-bias).
 
 
 ## Requirements
