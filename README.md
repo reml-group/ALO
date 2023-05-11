@@ -8,13 +8,11 @@ ALO is a simple yet effective novel loss function with adaptive loose optimizati
 
 ## Citation
 ```
-@misc{ma2023adaptive,
-      title={Adaptive loose optimization for robust question answering}, 
-      author={Jie Ma and Pinghui Wang and Zewei Wang and Dechen Kong and Min Hu and Ting Han and Jun Liu},
-      year={2023},
-      eprint={2305.03971},
-      archivePrefix={arXiv},
-      primaryClass={cs.CL}
+@article{ma2023adaptive,
+  title={Adaptive loose optimization for robust question answering},
+  author={Ma, Jie and Wang, Pinghui and Wang, Zewei and Kong, Dechen and Hu, Min and Han, Ting and Liu, Jun},
+  journal={arXiv preprint arXiv:2305.03971},
+  year={2023}
 }
 ```
 
