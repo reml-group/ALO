@@ -1,12 +1,30 @@
 # ALO
 
-ALO is a simple yet effective novel loss function with adaptive loose optimization, which seeks to make the best of both worlds for question answering: in-distribution and out-of-distribution. Its main technical contribution is to reduce the loss adaptively according to the ratio between the previous and current optimization state on mini-batch training data. This loose optimization can be used to prevent non-debiasing methods from overlearning data bias while enabling debiasing methods to maintain slight bias learning.
+## Introduction
 
-![image](image.png)
+ALO a simple yet effective novel loss function with ***A**daptive **L**oose **O**ptimization*, which seeks to make the best of both worlds for question answering: in-distribution and out-of-distribution. Its main technical contribution is to reduce the loss adaptively according to the ratio between the previous and current optimization state on mini-batch training data. This loose optimization technique can be used to prevent non-debiasing methods from overlearning data bias while enabling debiasing methods to maintain slight bias learning.
 
-[ALO for Visual Question Answering](https://github.com/reml-group/ALO/tree/main/vqa-alo)
+---
 
-[ALO for Extractive Question Answering](https://github.com/reml-group/ALO/tree/main/qa-alo)
+## Methods Overview
+
+### Visual QA
+
+![vqa](images/vqa.png)
+
+<center>Figure 1. Comparison of non-debiasing and debiasing visual QA methods with or without adaptive loose optimization. The loose degree is controlled dynamically by the ratio of the last t − 1 and current t optimization states.</center>
+
+### Extractive QA
+
+![qa](images/qa.png)
+
+<center>Figure 2. Comparison of non-debiasing and debiasing extractive QA methods with or without adaptive loose optimization.</center>
+
+## Run
+
+To run our ALO for ***Visual Question Answering***, follow the steps here [ALO for Visual Question Answering](https://github.com/reml-group/ALO/tree/main/vqa-alo).
+
+To run our ALO for ***Extractive Question Answering***, follow the steps here [ALO for Extractive Question Answering](https://github.com/reml-group/ALO/tree/main/qa-alo).
 
 ## Citation
 ```
@@ -17,5 +35,4 @@ ALO is a simple yet effective novel loss function with adaptive loose optimizati
   year={2023}
 }
 ```
-
 
